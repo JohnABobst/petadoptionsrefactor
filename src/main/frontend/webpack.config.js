@@ -7,7 +7,7 @@ module.exports = {
     path: './src/main.js'
   },
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '../../../../target/classes/static',
     filename: 'bundle.js'
   },
   module: {
@@ -31,8 +31,8 @@ module.exports = {
     new WriteFilePlugin()
   ],
   devtool: 'eval-source-map',
-  devServer: {
-    contentBase: './public',
-    inline: true
-  }
+//  devServer: {
+//    contentBase: './public',
+//    inline: true
+//  }
 }

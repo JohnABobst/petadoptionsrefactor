@@ -10,10 +10,10 @@ const PetShow = (props) => {
   let vaccinated = pet.vaccination_status === true? "Yes" : "No"
   
   useEffect(() => {
-   fetch(`/api/v1/pets/pet_type/${petId}`)
+   fetch(`/api/v1/pet/${petId}`)
     .then(result => result.json())
     .then(pet => {
-      setPet(pet[0])
+      setPet(pet)
     })
   }, []);
   
@@ -35,7 +35,7 @@ const PetShow = (props) => {
   return (
     <div>
       <h1>Adopt Me!!</h1>
-      
+      <img className="pet-image" src={pet.imageUrl} />
       <h3>Name: {pet.name}</h3>
       <p>Age: {pet.age}</p>
       <p>Vaccinated: {vaccinated}</p>

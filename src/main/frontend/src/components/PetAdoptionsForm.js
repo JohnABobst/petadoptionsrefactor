@@ -4,16 +4,16 @@ import _ from "lodash";
 const PetAdoptionsForm = props => {
   const [adoptionForm, setAdoptionForm] = useState({
       name: '',
-      phone_number: '',
+      phoneNumber: '',
       email: '',
-      home_status: '',
+      homeStatus: ''
   })
 
   let requiredFields = {
     name : "Name",
-    phone_number : "Phone number",
+    phoneNumber : "Phone number",
     email : "Email",
-    home_status : "Home status",
+    homeStatus : "Home status",
   }
   const [errors, setErrors] = useState({})
 
@@ -49,11 +49,12 @@ const PetAdoptionsForm = props => {
       .then(result => {
         setAdoptionForm({
           name: '',
-          phone_number: '',
+          phoneNumber: '',
           email: '',
-          home_status: '',
+          homeStatus: '',
       })
         props.setApplicationStatus("Your request is in process")
+        handleClose()
       })
     } 
   }
@@ -61,22 +62,22 @@ const PetAdoptionsForm = props => {
   return(
     <>
       <button onClick={handleClose}>Close</button>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
+      <form id="column-form" onSubmit={handleSubmit}>
         <label>Name
           <p className="error">{errors.name}</p>
-          <input type="text" name="name" id="name" value={adoptionForm.name} />
+          <input onChange={handleChange} type="text" name="name" id="name" value={adoptionForm.name} />
         </label>
         <label>Phone Number
           <p className="error">{errors.phone_number}</p>
-          <input type="text" name="phone_number" id="phone_number" value={adoptionForm.phone_number} />
+          <input onChange={handleChange} type="text" name="phoneNumber" id="phone_number" value={adoptionForm.phone_number} />
         </label>
         <label>Email
           <p className="error">{errors.email}</p>
-          <input type="text" name="email" id="email" value={adoptionForm.email} />
+          <input onChange={handleChange} type="text" name="email" id="email" value={adoptionForm.email} />
         </label>
         <label>Home Status
           <p className="error">{errors.home_status}</p>
-          <select type="text" name="home_status" id="home_status" value={adoptionForm.home_status}>
+          <select onChange={handleChange} type="text" name="homeStatus" id="home_status" value={adoptionForm.home_status}>
             <option value=""></option>
             <option value="Rent">Rent</option>
             <option value="Own">Own</option>

@@ -7,7 +7,6 @@ import PetSurrenderForm from './PetSurrenderForm'
 
 const NavBar = (props) => {
   const [petTypes, setPetTypes] = useState([]);
-  
   useEffect(() => {
     fetch('/api/v1/pet_types')
     .then(result => result.json())
@@ -15,7 +14,6 @@ const NavBar = (props) => {
       setPetTypes(petTypes)
     })
   }, []);
-
   const petLinks = petTypes.map((petType, index) => {
     return(
         <div key={index} className="nav-item">
@@ -38,7 +36,7 @@ const NavBar = (props) => {
       <Switch>
         <Route exact path="/pets" component={PetsContainer} />
         <Route exact path="/pets/:pet_type" component={PetTypeContainer} />
-        <Route exact path="/pets/:pet_type/:id" component={PetShow} />
+        <Route exact path="/pet/:id" component={PetShow} />
         <Route exact path="/adoptions/new" component={PetSurrenderForm} />
       </Switch>
     </div>
