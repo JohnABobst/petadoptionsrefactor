@@ -5,17 +5,24 @@ const PetShow = (props) => {
   let petId = props.match.params.id
   const [displayForm, setDisplayForm] = useState(false)
   const [pet, setPet] = useState([])
+  const [pageFound, setPageFound] = useState(true)
   const [applicationStatus, setApplicationStatus] = useState("")
 
   let vaccinated = pet.vaccination_status === true? "Yes" : "No"
-  
   useEffect(() => {
-   fetch(`/api/v1/pet/${petId}`)
-    .then(result => result.json())
-    .then(pet => {
-      setPet(pet)
-    })
-  }, []);
+    fetch(`/api/v1${props.location.pathname}`)
+     .then(response => {
+       if (response.ok) {
+       return response
+     } else {
+       setPageFound(false)
+     }
+   })
+     .then(result =>  result.json())
+     .then(pet => {
+       setPet(pet)
+     })
+   }, []);
   
   const handleAdoptClick = () => {
     let formState = displayForm === true ? false : true
@@ -31,18 +38,25 @@ const PetShow = (props) => {
       setDisplayForm={setDisplayForm}
       /> : <button onClick={handleAdoptClick}>Adopt Me!</button>
   }
-  
-  return (
-    <div>
-      <h1>Adopt Me!!</h1>
-      <img className="pet-image" src={pet.imageUrl} />
-      <h3>Name: {pet.name}</h3>
-      <p>Age: {pet.age}</p>
-      <p>Vaccinated: {vaccinated}</p>
-      <p>{pet.adoption_story}</p>
-      {adoptForm}
-    </div>
-  );
+  let response;
+  if (!pageFound) {
+    response = (
+      <p>404 page not found</p>
+    )
+  } else {
+    response = (
+      <div>
+        <h1>Adopt Me!!</h1>
+        <img className="pet-image" src={pet.imageUrl} />
+        <h3>Name: {pet.name}</h3>
+        <p>Age: {pet.age}</p>
+        <p>Vaccinated: {vaccinated}</p>
+        <p>{pet.adoption_story}</p>
+        {adoptForm}
+      </div>
+    );
+  }
+  return response
 }
 
 export default PetShow

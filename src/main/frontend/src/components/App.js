@@ -8,8 +8,9 @@ const App = props => {
       <Route exact path="/">
         <Redirect to="/pets"/>
       </Route>
-      <Route path="/pet/:id" component={NavBar} />
+      
       <Route path="/pets" component={NavBar}/>
+      {/* <Route path="/pets/:pet_type/:id" component={PetShow} /> */}
       <Route path="/adoptions/new" component={NavBar} />
     </BrowserRouter>
   )
