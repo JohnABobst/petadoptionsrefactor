@@ -8,7 +8,7 @@ const PetShow = (props) => {
   const [pageFound, setPageFound] = useState(true)
   const [applicationStatus, setApplicationStatus] = useState("")
 
-  let vaccinated = pet.vaccination_status === true? "Yes" : "No"
+  let vaccinated = pet.vaccinationStatus === true? "Yes" : "No"
   useEffect(() => {
     fetch(`/api/v1${props.location.pathname}`)
      .then(response => {
@@ -51,7 +51,7 @@ const PetShow = (props) => {
         <h3>Name: {pet.name}</h3>
         <p>Age: {pet.age}</p>
         <p>Vaccinated: {vaccinated}</p>
-        <p>{pet.adoption_story}</p>
+        <p>{pet.adoptionStory}</p>
         {adoptForm}
       </div>
     );

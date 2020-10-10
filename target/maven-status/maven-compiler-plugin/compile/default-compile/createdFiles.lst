@@ -5,8 +5,10 @@ com/launchacademy/petAdoptions/repositories/AdoptablePetRepository.class
 com/launchacademy/petAdoptions/controllers/api/v1/AdoptablePetController.class
 com/launchacademy/petAdoptions/controllers/api/v1/AdoptionApplicationController.class
 com/launchacademy/petAdoptions/controllers/api/v1/SurrenderApplicationController.class
+com/launchacademy/petAdoptions/controllers/api/v1/AdoptablePetController$NotFoundAdvice.class
 com/launchacademy/petAdoptions/seeders/AdoptionApplicationSeeder.class
 com/launchacademy/petAdoptions/repositories/SurrenderApplicationRepository.class
 com/launchacademy/petAdoptions/seeders/SurrenderApplicationSeeder.class
+com/launchacademy/petAdoptions/controllers/api/v1/AdoptablePetController$NotFoundException.class
 com/launchacademy/petAdoptions/models/SurrenderApplication.class
 com/launchacademy/petAdoptions/seeders/MainSeeder.class

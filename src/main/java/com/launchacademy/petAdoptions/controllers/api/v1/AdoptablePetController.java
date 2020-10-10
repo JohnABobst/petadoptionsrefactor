@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdoptablePetController {
   private final AdoptablePetRepository adoptablePetRepository;
   private final PetTypeRepository petTypeRepository;
-  private class AdoptablePetNotFoundException extends RuntimeException {};
+  private class NotFoundException extends RuntimeException {};
 
   @ControllerAdvice
-  private class AdoptablePetNotFoundAdvice {
+  private class NotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(AdoptablePetNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String adoptablePetNotFoundHandler(AdoptablePetNotFoundException exception) {
+    String NotFoundHandler(NotFoundException exception) {
       return exception.getMessage();
     }
   }
@@ -46,6 +46,6 @@ public class AdoptablePetController {
   @GetMapping("/pets/{petType}/{petId}")
   public AdoptablePet getPetById(@PathVariable String petType, @PathVariable Integer petId) {
     Optional<PetType> type = petTypeRepository.findByType(petType);
-    return adoptablePetRepository.findByIdAndPetType(petId, type).orElseThrow(AdoptablePetNotFoundException::new);
+    return adoptablePetRepository.findByIdAndPetType(petId, type).orElseThrow(NotFoundException::new);
   }
 }
